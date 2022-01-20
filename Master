@@ -1,0 +1,46 @@
+from math import log, cos, sin
+from prettytable import PrettyTable
+import numpy as np
+
+def compute_function_even(x):
+   try:
+       Fh =  max(log(((1 - num)/(sin(x + num))),21) , abs(cos(x)/num))
+   except:
+       Fh = InterruptedError("Error")
+   return Fh
+
+def compute_function_odd(x):
+   try:
+       Fo =  min(log((1 - num)/(cos(x - num)),21), sin(x)/num)
+   except:
+       Fo = InterruptedError("Error")
+   return Fo
+
+mytable = PrettyTable()
+mytable.field_names = ["№", "x", "Ans"]
+count = 0  
+while True:
+    try:
+       num = int(input("Enter your number - "))
+       Snum = float(input("Enter start number - "))
+       Step = float(input("Enter step of range - "))
+       Fnum = float(input("Enter last number - "))
+       break
+    except ValueError:
+       print("It is not a number")
+
+if Step == 0:
+    print("Error: step of range = 0")
+else:
+  if num % 2 == 0:
+      for x in np.arange(Snum, Fnum, Step):
+       Fh = compute_function_even(x)
+       count+=1
+       mytable.add_row([count, x , Fh]) 
+      print(mytable)
+  else:
+       for x in np.arange(Snum, Fnum, Step):
+          Fo = compute_function_odd(x)
+          count+=1
+          mytable.add_row([count, x , Fo]) 
+       print(mytable)
